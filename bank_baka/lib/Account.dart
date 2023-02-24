@@ -69,15 +69,15 @@ class Account {
               ? withdrawables[1]
               : withdrawables[2];
     }
-    for (int i = txnUpdateIndex; i < _transactions.length; i++) {
+    for (int i = txnUpdateIndex + 1; i < _transactions.length; i++) {
       e = _transactions[i].getDateTime();
       if (_transactions[i].getType() == "Withdrawal" &&
           now.day == e.day &&
           now.month == e.month &&
           now.year == e.year) {
         _todaysWithdrawable -= _transactions[i].getAmount();
-        txnUpdateIndex++;
-      }
+        txnUpdateIndex = i;
+      } else {}
     }
   }
 
